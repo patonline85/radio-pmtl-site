@@ -69,40 +69,45 @@
 </head>
 <body class="bg-paper font-sans text-ink h-screen flex flex-col overflow-hidden">
 
-    <header class="w-full py-6 flex justify-center items-center shrink-0">
-        <h1 class="text-2xl font-semibold tracking-wide flex items-center gap-3">
-            <i class="fa-solid fa-leaf text-clay"></i>
+    <header class="w-full py-4 md:py-6 flex justify-center items-center shrink-0">
+        <h1 class="text-xl md:text-2xl font-semibold tracking-wide flex items-center gap-3">
+            <img src="logo.png" alt="Logo" class="h-8 w-auto object-contain">
             Bạch Thoại Phật Pháp
         </h1>
     </header>
 
-    <main class="max-w-7xl mx-auto w-full flex-1 flex flex-col md:flex-row gap-6 p-4 md:p-6 overflow-hidden pt-0">
+    <main class="max-w-7xl mx-auto w-full flex-1 flex flex-col md:flex-row gap-4 md:gap-6 p-4 md:p-6 overflow-hidden pt-0">
         
-        <section class="w-full md:w-1/3 lg:w-1/4 bg-white rounded-3xl shadow-paper p-6 flex flex-col items-center shrink-0 relative transition-all duration-300">
-            <div class="w-32 h-32 md:w-48 md:h-48 rounded-full bg-paper border-4 border-clay flex items-center justify-center mb-6 shadow-float transition-all duration-300 hover:scale-105">
-                <i class="fa-solid fa-om text-5xl md:text-7xl text-clay opacity-80"></i>
+        <section class="w-full md:w-1/3 lg:w-1/4 bg-white rounded-3xl shadow-paper p-4 md:p-6 flex flex-col items-center shrink-0 relative transition-all duration-300">
+            
+            <div class="flex flex-row md:flex-col items-center w-full gap-4 md:gap-0">
+                
+                <div class="w-20 h-20 md:w-48 md:h-48 rounded-full bg-paper border-4 border-clay flex items-center justify-center md:mb-6 shadow-float transition-all duration-300 hover:scale-105 shrink-0 overflow-hidden">
+                    <img src="suphu.png" alt="Sư Phụ" class="w-full h-full object-cover">
+                </div>
+                
+                <div class="text-left md:text-center w-full flex-1 md:mb-6">
+                    <span class="text-[10px] md:text-xs uppercase tracking-widest text-clay font-medium mb-1 block">Đang phát</span>
+                    <h2 id="cur-title" class="text-sm md:text-xl font-semibold text-ink line-clamp-2 md:min-h-[3.5rem]">
+                        Vui lòng chọn một bài pháp...
+                    </h2>
+                </div>
+
             </div>
             
-            <div class="text-center w-full mb-6">
-                <span class="text-xs uppercase tracking-widest text-clay font-medium mb-1 block">Đang phát</span>
-                <h2 id="cur-title" class="text-lg md:text-xl font-semibold text-ink line-clamp-2 min-h-[3.5rem]">
-                    Vui lòng chọn một bài pháp...
-                </h2>
-            </div>
-            
-            <audio id="audio" controls class="mt-auto shadow-sm transition-all duration-300 hover:-translate-y-1"></audio>
+            <audio id="audio" controls class="mt-4 md:mt-auto shadow-sm transition-all duration-300 hover:-translate-y-1"></audio>
         </section>
 
         <section class="w-full md:w-2/3 lg:w-3/4 flex-1 bg-white rounded-3xl shadow-paper flex flex-col overflow-hidden">
-            <div class="p-5 border-b border-paper flex justify-between items-center bg-white z-10 shrink-0">
-                <h3 class="font-semibold text-lg flex items-center">
+            <div class="p-4 md:p-5 border-b border-paper flex justify-between items-center bg-white z-10 shrink-0">
+                <h3 class="font-semibold text-base md:text-lg flex items-center">
                     <i class="fa-solid fa-list-ul mr-3 text-clay"></i> 
                     Danh sách phát
                 </h3>
-                <span id="track-count" class="text-sm font-mono text-clay bg-paper px-3 py-1 rounded-full shadow-inner">0 bài</span>
+                <span id="track-count" class="text-xs md:text-sm font-mono text-clay bg-paper px-3 py-1 rounded-full shadow-inner">0 bài</span>
             </div>
             
-            <div id="list" class="flex-1 overflow-y-auto custom-scrollbar p-3 space-y-2">
+            <div id="list" class="flex-1 overflow-y-auto custom-scrollbar p-2 md:p-3 space-y-2">
                 </div>
         </section>
     </main>
@@ -117,7 +122,9 @@
         const fallbackData = [
             { url: '#', title: 'Bài 1: Nhận thức về vô thường trong đời sống', duration: '14:20' },
             { url: '#', title: 'Bài 2: Phương pháp thiền định hằng ngày', duration: '20:15' },
-            { url: '#', title: 'Bài 3: Buông xả phiền não, tìm về chân tâm', duration: '18:45' }
+            { url: '#', title: 'Bài 3: Buông xả phiền não, tìm về chân tâm', duration: '18:45' },
+            { url: '#', title: 'Bài 4: Chuyển hóa sân hận thành từ bi', duration: '22:10' },
+            { url: '#', title: 'Bài 5: Tỉnh giác trong từng phút giây hiện tại', duration: '16:05' }
         ];
 
         // Fetch data
@@ -136,16 +143,16 @@
                 <div class="item group flex items-center p-3 md:p-4 rounded-2xl cursor-pointer transition-all duration-300 hover:bg-paper border border-transparent"
                      onclick="play('${t.url}', '${t.title}', this)">
                     
-                    <div class="w-10 h-10 shrink-0 rounded-full bg-paper text-clay flex items-center justify-center mr-4 shadow-sm group-hover:bg-clay group-hover:text-white transition-all duration-300 group-active:scale-95">
-                        <i class="play-icon fa-solid fa-play text-sm ml-0.5"></i>
+                    <div class="w-8 h-8 md:w-10 md:h-10 shrink-0 rounded-full bg-paper text-clay flex items-center justify-center mr-3 md:mr-4 shadow-sm group-hover:bg-clay group-hover:text-white transition-all duration-300 group-active:scale-95">
+                        <i class="play-icon fa-solid fa-play text-xs md:text-sm ml-0.5"></i>
                     </div>
                     
-                    <div class="flex-1 overflow-hidden pr-4">
-                        <div class="font-medium text-ink truncate group-hover:text-clay transition-colors">${t.title}</div>
-                        <div class="text-xs text-ink opacity-60 mt-0.5">Track ${String(index + 1).padStart(2, '0')}</div>
+                    <div class="flex-1 overflow-hidden pr-2 md:pr-4">
+                        <div class="font-medium text-sm md:text-base text-ink truncate group-hover:text-clay transition-colors">${t.title}</div>
+                        <div class="text-[10px] md:text-xs text-ink opacity-60 mt-0.5 md:mt-1">Track ${String(index + 1).padStart(2, '0')}</div>
                     </div>
                     
-                    <div class="text-clay font-mono text-sm opacity-80 shrink-0">${t.duration}</div>
+                    <div class="text-clay font-mono text-xs md:text-sm opacity-80 shrink-0">${t.duration}</div>
                 </div>
             `).join('');
         }
@@ -160,8 +167,12 @@
                 if (icon) {
                     icon.classList.remove('fa-volume-high', 'animate-pulse', 'text-white');
                     icon.classList.add('fa-play', 'ml-0.5');
-                    i.querySelector('.w-10').classList.remove('bg-clay', 'text-white');
-                    i.querySelector('.w-10').classList.add('bg-paper', 'text-clay');
+                    
+                    const iconContainer = i.querySelector('.shrink-0.rounded-full');
+                    if(iconContainer) {
+                        iconContainer.classList.remove('bg-clay', 'text-white');
+                        iconContainer.classList.add('bg-paper', 'text-clay');
+                    }
                 }
             });
 
@@ -169,7 +180,7 @@
             el.classList.remove('border-transparent');
             el.classList.add('bg-paper', 'border-clay', 'shadow-sm');
             
-            const activeIconContainer = el.querySelector('.w-10');
+            const activeIconContainer = el.querySelector('.shrink-0.rounded-full');
             const activeIcon = el.querySelector('.play-icon');
             
             if (activeIconContainer && activeIcon) {

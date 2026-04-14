@@ -30,7 +30,7 @@ def sync():
     new_items = []
 
     # Duyệt từ cũ đến mới để bài mới nhất nằm trên cùng sau khi append
-    for entry in reversed(feed.entries):
+    for entry in feed.entries:
         original_url = entry.enclosures[0].href
         
         if original_url not in existing_urls:

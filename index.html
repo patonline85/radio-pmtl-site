@@ -129,19 +129,12 @@
 
         // Fetch data
         fetch('playlist.json')
-                .then(r => r.json())
-                .then(data => {
-                    // Thêm dòng này nếu bạn muốn chắc chắn đảo ngược lại danh sách 
-                    // (Chỉ dùng nếu bạn thấy danh sách đang bị ngược)
-                    // data.reverse(); 
-        
-                    list.innerHTML = data.map((t, index) => `
-                        <div class="item" onclick="play('${t.url}', '${t.title}', this)">
-                            <div class="item-idx">${data.length - index}</div> <div style="flex:1">${t.title}</div>
-                            <div style="color:#888; font-size:12px">${t.duration}</div>
-                        </div>
-                    `).join('');
-                });
+            .then(r => r.json())
+            .then(data => renderPlaylist(data))
+            .catch(err => {
+                console.warn('Không tìm thấy playlist.json, đang sử dụng dữ liệu mẫu.');
+                renderPlaylist(fallbackData);
+            });
 
         function renderPlaylist(data) {
             trackCount.innerText = `${data.length} bài`;

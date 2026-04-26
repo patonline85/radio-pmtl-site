@@ -1,5 +1,11 @@
 [
   {
+    "title": "TẬP 48 - CỐ CHẤP LÀ SAI LẦM GIẢI THOÁT LÀ TRÍ TUỆ",
+    "url": "https://huggingface.co/datasets/patonline85/radio-pmtl-site/resolve/main/audio/71661245.mp3",
+    "original_url": "https://api.spreaker.com/download/episode/71661245/t_p_48_c_ch_p_l_sai_l_m_gi_i_tho_t_l_tr_tu.mp3",
+    "duration": "1248"
+  },
+  {
     "title": "PHẦN 01 - NHẤT MỆNH NHỊ VẬN TAM PHONG THỦY",
     "url": "https://huggingface.co/datasets/patonline85/radio-pmtl-site/resolve/main/audio/71091458.mp3",
     "original_url": "https://api.spreaker.com/download/episode/71091458/ph_n_01_nh_t_m_nh_nh_v_n_tam_phong_th_y.mp3",

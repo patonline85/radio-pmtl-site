@@ -21,15 +21,15 @@ def sync():
             try:
                 playlist = json.load(f)
                 
-                # --- ĐOẠN MÃ MỚI BỔ SUNG: TỰ ĐỘNG QUÉT VÀ SỬA LINK CŨ ---
+                # --- TỰ ĐỘNG QUÉT VÀ SỬA LINK CŨ SANG CLOUDFLARE PROXY ---
                 for item in playlist:
-                    if item.get("url") and item["url"].startswith("https://huggingface.co"):
-                        # Tự động chuyển đổi toàn bộ link HF gốc hoặc link Netlify cũ sang Cloudflare Proxy
+                    if item.get("url"):
                         if item["url"].startswith("https://huggingface.co"):
                             item["url"] = item["url"].replace("https://huggingface.co", "https://proxy.pmtl.site")
+                            playlist_modified = True # Đánh dấu để lưu file
                         elif item["url"].startswith("/huggingface-audio"):
                             item["url"] = item["url"].replace("/huggingface-audio", "https://proxy.pmtl.site")
-                        playlist_modified = True # Đánh dấu là file có sự thay đổi cần lưu lại
+                            playlist_modified = True # Đánh dấu để lưu file
                 # --------------------------------------------------------
             except:
                 playlist = []
@@ -70,7 +70,7 @@ def sync():
                     token=HF_TOKEN
                 )
 
-                # 5. Tạo link Raw qua Netlify Proxy
+                # 5. Tạo link Raw qua Proxy dùng chung
                 hf_raw_url = f"https://proxy.pmtl.site/datasets/{HF_REPO}/resolve/main/audio/{file_name}"
                 
                 # Lấy duration nếu có

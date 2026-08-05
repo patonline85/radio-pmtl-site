@@ -24,7 +24,11 @@ def sync():
                 # --- ĐOẠN MÃ MỚI BỔ SUNG: TỰ ĐỘNG QUÉT VÀ SỬA LINK CŨ ---
                 for item in playlist:
                     if item.get("url") and item["url"].startswith("https://huggingface.co"):
-                        item["url"] = item["url"].replace("https://huggingface.co", "/huggingface-audio")
+                        # Tự động chuyển đổi toàn bộ link HF gốc hoặc link Netlify cũ sang Cloudflare Proxy
+                        if item["url"].startswith("https://huggingface.co"):
+                            item["url"] = item["url"].replace("https://huggingface.co", "https://proxy.pmtl.site")
+                        elif item["url"].startswith("/huggingface-audio"):
+                            item["url"] = item["url"].replace("/huggingface-audio", "https://proxy.pmtl.site")
                         playlist_modified = True # Đánh dấu là file có sự thay đổi cần lưu lại
                 # --------------------------------------------------------
             except:
@@ -67,7 +71,7 @@ def sync():
                 )
 
                 # 5. Tạo link Raw qua Netlify Proxy
-                hf_raw_url = f"/huggingface-audio/datasets/{HF_REPO}/resolve/main/audio/{file_name}"
+                hf_raw_url = f"https://proxy.pmtl.site/datasets/{HF_REPO}/resolve/main/audio/{file_name}"
                 
                 # Lấy duration nếu có
                 duration = ""

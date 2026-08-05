@@ -59,7 +59,7 @@ def sync():
                 )
 
                 # 5. Tạo link Raw từ Hugging Face
-                hf_raw_url = f"https://huggingface.co/datasets/{HF_REPO}/resolve/main/audio/{file_name}"
+                hf_raw_url = f"/huggingface-audio/datasets/{HF_REPO}/resolve/main/audio/{file_name}"
                 
                 # Lấy duration nếu có
                 duration = ""
